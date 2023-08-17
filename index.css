@@ -1,0 +1,110 @@
+@font-face {
+    font-family: RL Madena;
+    src: url("RL Madena Variable.ttf");
+}
+
+* {
+    padding: 0;
+    font-family: 'RL Madena', serif;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        color: #333333;
+        background-color: #F3F3F3;
+
+    }
+
+    .content {
+        color: #333333;
+    }
+
+    .content::selection {
+        color: #F3F3F3;
+        background-color: #333333;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #F3F3F3;
+        background-color: #333333;
+    }
+
+    .content {
+        color: #F3F3F3;
+    }
+
+    .content::selection {
+        color: #333333;
+        background-color: #F3F3F3;
+    }
+}
+
+body {
+    align-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    border: none;
+    background: none;
+    font-size: larger;
+}
+
+.content {
+    width: calc(100vw - 160px);
+    height: calc(100vh - 30px);
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-top: 25px;
+    font-size: larger;
+    overflow-y: hidden;
+}
+
+.editor {
+    font-size: larger;
+    font-weight: lighter;
+    width: calc(100vw - 160px);
+    height: calc(100vh - 30px);
+    border: none;
+    background: none;
+    outline: none;
+    resize: none;
+}
+
+.editor::-webkit-scrollbar {
+    display: none;
+}
+
+#timestampDisplay {
+    justify-self: start;
+    font-size: larger;
+    overflow-y: hidden;
+    opacity: 40%;
+    margin-bottom: 5px;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+::placeholder {
+    color: #c5c5c5;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #c5c5c5;
+}
+
+::-ms-input-placeholder {
+    color: #c5c5c5;
+}
+
+
+
+
+
