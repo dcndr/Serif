@@ -7,7 +7,7 @@ const placeholders = [
     "Once upon a time...",
     "Knock knock?",
     "Write something... *crickets*",
-    "We're reaching out about your car's extended warranty..."
+    "We're reaching out regarding your car's extended warranty..."
 ];
 
 text.placeholder = placeholders[Math.floor(Math.random() * placeholders.length)];
@@ -64,4 +64,66 @@ text.addEventListener("keydown", function (event) {
     }
 });
 
+const searchInput = document.getElementById('searchInput');
+const resultsContainer = document.querySelector('.results');
+const spotlight = document.querySelector('.spotlight');
 
+let isSearchOpen = false;
+
+searchInput.addEventListener('input', () => {
+    const searchText = searchInput.value.toLowerCase();
+    updateResults(searchText);
+
+});
+
+document.addEventListener("keydown", function (event) {
+    if (((event.ctrlKey || event.metaKey) && event.key === "f") && text.value !== "") {
+            if (isSearchOpen) {
+                closeSearch();
+            } else {
+                openSearch();
+            }
+        }
+});
+
+function openSearch() {
+    isSearchOpen = true;
+    spotlight.classList.add('active');
+    searchInput.focus();
+}
+
+function closeSearch() {
+    isSearchOpen = false;
+    searchInput.value = '';
+    resultsContainer.innerHTML = '';
+    spotlight.classList.remove('active');
+}
+
+function updateResults(searchText) {
+    resultsContainer.innerHTML = '';
+
+    const textContent = text.value.toLowerCase();
+    const phrases = textContent.split('\n'); // Split by newlines
+
+    if (textContent !== "" || "word:") {
+        var matchingPhrases = phrases.filter(phrase => {
+            if (searchText.startsWith('word:')) {
+                const wordToSearch = searchText.substring(5); // Remove 'word:' prefix
+                return phrase.match(`/\b${searchText}\b/`).length !== 0
+            } else {
+                return phrase.includes(searchText);
+            }
+        });
+    }
+
+    if (matchingPhrases.length > 0) {
+        matchingPhrases.forEach(phrase => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('result-item');
+            resultItem.textContent = phrase;
+            resultsContainer.appendChild(resultItem);
+        });
+    } else {
+        resultsContainer.innerHTML = '<p>No matching phrases found</p>';
+    }
+}
