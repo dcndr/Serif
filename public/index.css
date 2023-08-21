@@ -1,11 +1,11 @@
 @font-face {
-    font-family: RL Madena;
-    src: url("public/RL Madena Variable.ttf");
+    font-family: Open Runde;
+    src: url("public/OpenRunde-Regular.otf");
 }
 
 * {
     padding: 0;
-    font-family: 'RL Madena', serif;
+    font-family: 'Open Runde', serif;
 }
 
 @media (prefers-color-scheme: light) {
